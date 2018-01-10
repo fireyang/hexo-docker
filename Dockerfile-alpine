@@ -1,0 +1,15 @@
+FROM node:9.3-alpine
+# FROM node:9.3
+
+RUN apk --update add git openssh && \
+    rm -rf /var/lib/apt/lists/* && \
+        rm -rf /tmp/* && \
+        rm /var/cache/apk/*
+
+WORKDIR /blog
+
+RUN npm install hexo-cli -g
+
+EXPOSE 4000
+
+CMD ["hexo", "server","-i","0.0.0.0"]
